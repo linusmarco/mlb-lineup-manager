@@ -1,6 +1,6 @@
 service: mlb-lineup-manager
 
-frameworkVersion: '1.29.2'
+frameworkVersion: '>=1.29.2'
 
 provider:
     name: aws
@@ -11,18 +11,18 @@ provider:
 
 functions:
     getRoster:
-        handler: server/functions/index.getRoster
+        handler: index.getRoster
         timeout: 30
         events:
             - http:
-                  path: posts
+                  path: getRoster
                   method: get
                   cors: true
     getRanks:
-        handler: server/functions/index.getRanks
+        handler: index.getRanks
         timeout: 30
         events:
             - http:
-                  path: posts
+                  path: getRanks
                   method: get
                   cors: true
