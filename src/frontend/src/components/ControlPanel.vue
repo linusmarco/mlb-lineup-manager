@@ -1,5 +1,13 @@
 <template>
     <div id="control-panel">
+        <b-form-select
+            v-on:change="updateValue('pitchHand', $event)"
+            :options="[
+                { value: 'R', text: 'Right handed opposing pitcher' },
+                { value: 'L', text: 'Left handed opposing pitcher' }
+            ]"
+            :value="pitchHand"
+        />
         <Slider
             v-bind:label-start="'Historical'"
             v-bind:label-end="'Hot Hand'"
@@ -27,7 +35,7 @@ import Slider from './Slider.vue';
 
 export default {
     name: 'ControlPanel',
-    props: ['hot', 'platoon'],
+    props: ['hot', 'platoon', 'pitchHand'],
     components: { Slider },
     methods: {
         updateValue(key, val) {

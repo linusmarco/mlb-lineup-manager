@@ -18,9 +18,9 @@
                 </thead>
                 <tbody>
                     <tr v-for="p in players" :key="p.id">
-                        <td>{{ p.name }}</td>
+                        <td>{{ `${p.LAST_NAME}, ${p.FIRST_NAME}` }}</td>
                         <td>{{ p.pos }}</td>
-                        <td>{{ p.bats }}</td>
+                        <td>{{ p.BAT_HAND }}</td>
                         <td>{{ p.PA }}</td>
                         <td>{{ p.AVG }}</td>
                         <td>{{ p.OBP }}</td>

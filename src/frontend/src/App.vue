@@ -2,9 +2,14 @@
     <div id="app">
         <Header />
         <main>
-            <ControlPanel :hot="50" :platoon="50" v-on:update="updateInputs($event)" />
-            <Lineup :players="testPlayers" />
-            <Roster :players="testRoster" />
+            <ControlPanel
+                :hot="inputs.hot"
+                :platoon="inputs.platoon"
+                :pitch-hand="inputs.pitchHand"
+                v-on:update="updateInputs($event)"
+            />
+            <Lineup :players="players" />
+            <Roster :players="roster" />
         </main>
         <Footer />
     </div>
@@ -32,8 +37,19 @@ export default {
             console.log(this.inputs);
         }
     },
+    mounted() {
+        fetch('https://fnlylv1jjh.execute-api.us-east-1.amazonaws.com/dev/getRoster')
+            .then(response => {
+                return response.json();
+            })
+            .then(myJson => {
+                console.log(JSON.stringify(myJson));
+                this.roster = myJson;
+            });
+    },
     data() {
         return {
+            players: [],
             testPlayers: [
                 { name: 'Player 1', pos: 'P' },
                 { name: 'Player 2', pos: 'C' },
@@ -45,6 +61,7 @@ export default {
                 { name: 'Player 8', pos: 'CF' },
                 { name: 'Player 9', pos: 'RF' }
             ],
+            roster: [],
             testRoster: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
                 d => {
                     return {
@@ -60,7 +77,8 @@ export default {
             ),
             inputs: {
                 hot: 50,
-                platoon: 50
+                platoon: 50,
+                pitchHand: 'R'
             }
         };
     }
