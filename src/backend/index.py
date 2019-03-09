@@ -1,5 +1,5 @@
 from dataaccessor.mlbstats_dataaccessor import MlbStatsDataAccessor
-
+import json
 
 def getRoster(event, context):
     mlb_data_accessor = MlbStatsDataAccessor()
@@ -10,7 +10,7 @@ def getRoster(event, context):
             'Access-Control-Allow-Origin': '*'
         },
         'isBase64Encoded': False,
-        'body': str(data)
+        'body': json.dumps(data)
     }
 
 
