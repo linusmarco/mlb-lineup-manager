@@ -11,9 +11,9 @@
 
     <script>
       var players = [113028,110840,120074,120903,114596, 132788, 119482, 123660, 137002]
-      makeField(players);
+      makeField(players,'500px');
 
-      function makeField(playerIdArray) {
+      function makeField(playerIdArray,width) {
         // takes in array of playerIds that link to images
         // order by position
 
@@ -22,7 +22,7 @@
         body.append('svg')
           .attr("x","0px")
           .attr("y","0px")
-          .attr('width','500px')
+          .attr('width',width)
           .attr('viewBox',"0 0 300.95 300.95")
           .attr("xml:space","preserve")
           .attr("style","enable-background:new 0 0 300.95 300.95;")
