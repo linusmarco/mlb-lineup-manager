@@ -6,7 +6,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(echo = TRUE)
 # Clear Environment
 rm(list=ls())
 # Setting working directory to MAC Desktop hw1 directory. NOTE: CHANGE TO YOUR WORKDING DIRECTORY
@@ -27,7 +26,7 @@ Get all the batters from the Red Sox for the 2016 season.
 # Need player ids for BOS team 2016 
 Batters <- Master %>%
   inner_join(Batting)  %>% 
-  select(playerID, nameFirst, nameLast, stint, teamID, yearID, bats, throws) %>%
+  select(playerID, retroID, nameFirst, nameLast, stint, teamID, yearID, bats, throws) %>%
   filter(teamID == 'BOS' &  yearID == '2016')
 
 POS <- Fielding %>%
