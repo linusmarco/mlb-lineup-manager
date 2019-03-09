@@ -2,9 +2,9 @@
     <div id="app">
         <Header />
         <main>
-            <ControlPanel />
+            <ControlPanel :hot="50" :platoon="50" v-on:update="updateInputs($event)" />
             <Lineup :players="testPlayers" />
-            <Roster />
+            <Roster :players="testRoster" />
         </main>
         <Footer />
     </div>
@@ -26,6 +26,12 @@ export default {
         Header,
         Footer
     },
+    methods: {
+        updateInputs(val) {
+            this.inputs[val.key] = val.val;
+            console.log(this.inputs);
+        }
+    },
     data() {
         return {
             testPlayers: [
@@ -38,7 +44,24 @@ export default {
                 { name: 'Player 7', pos: 'LF' },
                 { name: 'Player 8', pos: 'CF' },
                 { name: 'Player 9', pos: 'RF' }
-            ]
+            ],
+            testRoster: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
+                d => {
+                    return {
+                        name: `Player ${d}`,
+                        pos: 'CF',
+                        bats: 'R',
+                        PA: Math.round(Math.random() * 600),
+                        AVG: Math.round(Math.random() * 0.35, 3),
+                        OBP: Math.round(Math.random() * 0.4, 3),
+                        SLG: Math.round(Math.random(), 3)
+                    };
+                }
+            ),
+            inputs: {
+                hot: 50,
+                platoon: 50
+            }
         };
     }
 };

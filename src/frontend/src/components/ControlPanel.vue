@@ -3,18 +3,22 @@
         <Slider
             v-bind:label-start="'Historical'"
             v-bind:label-end="'Hot Hand'"
-            v-bind:range="[-100, 100]"
+            v-bind:range="[0, 100, 1]"
+            v-bind:val="hot"
+            v-on:valueChange="updateValue('hot', $event)"
         />
         <Slider
             v-bind:label-start="'Overall'"
             v-bind:label-end="'Platoon'"
-            v-bind:range="[-100, 100]"
+            v-bind:range="[0, 100, 1]"
+            v-bind:val="platoon"
+            v-on:valueChange="updateValue('platoon', $event)"
         />
-        <Slider
-            v-bind:label-start="'Offense'"
-            v-bind:label-end="'Defense'"
-            v-bind:range="[-100, 100]"
-        />
+        <!-- <Slider
+            v-bind:label-start="'Regular'"
+            v-bind:label-end="'New guy'"
+            v-bind:range="[0, 100, 1]"
+        /> -->
     </div>
 </template>
 
@@ -23,7 +27,13 @@ import Slider from './Slider.vue';
 
 export default {
     name: 'ControlPanel',
-    components: { Slider }
+    props: ['hot', 'platoon'],
+    components: { Slider },
+    methods: {
+        updateValue(key, val) {
+            this.$emit('update', { key, val });
+        }
+    }
 };
 </script>
 
