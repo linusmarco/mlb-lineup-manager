@@ -1,11 +1,11 @@
-# Baseball Hack Day 2019 
+# Baseball Hack Day 2019
 
 The project is a lineup optimizer for MLB manager. Use DevPost to register for the day submit your code. https://baseball-hack-day-2019.devpost.com/
 
-Contributors: 
+Contributors:
 - Linus Marco
-- Alex Klaven
+- Alex Klavens
 - Frederick DiMarco
-- Patrick Rills 
+- Patrick Rills
 - Carli Hairston
-- Balaji Kumar 
+- Balaji Kumar
