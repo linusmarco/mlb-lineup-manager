@@ -1,0 +1,28 @@
+service: mlb-lineup-manager
+
+frameworkVersion: '>=1.29.2'
+
+provider:
+    name: aws
+    profile: serverless-admin
+    runtime: python3.6
+    stage: dev
+    region: us-east-1
+
+functions:
+    getRoster:
+        handler: index.getRoster
+        timeout: 30
+        events:
+            - http:
+                  path: getRoster
+                  method: get
+                  cors: true
+    getRanks:
+        handler: index.getRanks
+        timeout: 30
+        events:
+            - http:
+                  path: getRanks
+                  method: get
+                  cors: true
