@@ -6,7 +6,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(echo = TRUE)
 # Clear Environment
 rm(list=ls())
 # Setting working directory to MAC Desktop hw1 directory. NOTE: CHANGE TO YOUR WORKDING DIRECTORY
@@ -27,12 +26,21 @@ Get all the batters from the Red Sox for the 2016 season.
 # Need player ids for BOS team 2016 
 Batters <- Master %>%
   inner_join(Batting)  %>% 
-  select(playerID, nameFirst, nameLast, stint, teamID, yearID, bats, throws) %>%
+  select(playerID, retroID, nameFirst, nameLast, stint, teamID, yearID, bats, throws) %>%
   filter(teamID == 'BOS' &  yearID == '2016')
 
 POS <- Fielding %>%
   inner_join(Batters, by=c("playerID", "yearID", "stint")) 
 
 write_csv(POS, "Batters.csv")
-  
+
+# Read Retrosheet Games Logs for 2016
+GL.headers = read_csv('game_log_header.csv')
+GL.2016 = read_csv('GL2016.TXT',
+                   col_names = names(GL.headers))
+
+GL.2016 <- GL.2016 %>% 
+  filter(VisitingTeam == "BOS" | HomeTeam == "BOS")
+
+write_csv(GL.2016, "RedSoxGames.csv")  
 ```
