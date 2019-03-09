@@ -33,5 +33,14 @@ POS <- Fielding %>%
   inner_join(Batters, by=c("playerID", "yearID", "stint")) 
 
 write_csv(POS, "Batters.csv")
-  
+
+# Read Retrosheet Games Logs for 2016
+GL.headers = read_csv('game_log_header.csv')
+GL.2016 = read_csv('GL2016.TXT',
+                   col_names = names(GL.headers))
+
+GL.2016 <- GL.2016 %>% 
+  filter(VisitingTeam == "BOS" | HomeTeam == "BOS")
+
+write_csv(GL.2016, "RedSoxGames.csv")  
 ```
