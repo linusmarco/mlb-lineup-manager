@@ -1,0 +1,38 @@
+---
+title: "Baseball Hack Day 2019 :: MLB Lineup Manager"
+author: "Carli Hairston carli@alumni.harvard.edu"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+# Clear Environment
+rm(list=ls())
+# Setting working directory to MAC Desktop hw1 directory. NOTE: CHANGE TO YOUR WORKDING DIRECTORY
+setwd("/Users/chairston/Harvard/git/baseballhackday/mlb-lineup-manager/src/data") 
+# Load in packages: tidyverse, Lahman database, rmarkdown
+if (!require(tidyverse)) install.packages('tidyverse')
+library(tidyverse)
+if (!require(Lahman)) install.packages('Lahman')
+library(Lahman)
+```
+
+## R Markdown
+
+Get all the batters from the Red Sox for the 2016 season. 
+
+```{r lahman}
+
+# Need player ids for BOS team 2016 
+Batters <- Master %>%
+  inner_join(Batting)  %>% 
+  select(playerID, nameFirst, nameLast, stint, teamID, yearID, bats, throws) %>%
+  filter(teamID == 'BOS' &  yearID == '2016')
+
+POS <- Fielding %>%
+  inner_join(Batters, by=c("playerID", "yearID", "stint")) 
+
+write_csv(POS, "Batters.csv")
+  
+```
