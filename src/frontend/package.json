@@ -9,7 +9,8 @@
     },
     "dependencies": {
         "vue": "^2.6.6",
-        "bootstrap-vue": "2.0.0-rc.14"
+        "bootstrap-vue": "2.0.0-rc.14",
+        "d3": "^3.5.0"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^3.5.0",

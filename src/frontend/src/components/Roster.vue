@@ -13,7 +13,7 @@
                         <th scope="col">PA</th>
                         <th scope="col">AVG</th>
                         <th scope="col">OBP</th>
-                        <th scope="col">SLG</th>
+                        <!-- <th scope="col">SLG</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -21,10 +21,14 @@
                         <td>{{ `${p.LAST_NAME}, ${p.FIRST_NAME}` }}</td>
                         <td>{{ p.pos }}</td>
                         <td>{{ p.BAT_HAND }}</td>
-                        <td>{{ p.PA }}</td>
-                        <td>{{ p.AVG }}</td>
-                        <td>{{ p.OBP }}</td>
-                        <td>{{ p.SLG }}</td>
+                        <td>{{ p.PLATE_APPEARANCE_COUNT }}</td>
+                        <td>{{ (p.HIT_COUNT / p.AT_BAT_COUNT).toFixed(3) }}</td>
+                        <td>
+                            {{
+                                ((p.HIT_COUNT + p.WALK_COUNT) / p.PLATE_APPEARANCE_COUNT).toFixed(3)
+                            }}
+                        </td>
+                        <!-- <td>{{ p.SLG }}</td> -->
                     </tr>
                 </tbody>
             </table>
@@ -37,6 +41,7 @@ export default {
     name: 'Roster',
     props: ['players'],
     data() {
+        console.log(players);
         return {};
     }
 };

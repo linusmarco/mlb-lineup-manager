@@ -34,7 +34,15 @@ export default {
     methods: {
         updateInputs(val) {
             this.inputs[val.key] = val.val;
-            console.log(this.inputs);
+            this.players = getRandom(
+                this.roster.map(p => {
+                    return {
+                        name: `${p.LAST_NAME}, ${p.FIRST_NAME}`,
+                        pos: 'CF'
+                    };
+                }),
+                9
+            );
         }
     },
     mounted() {
@@ -43,9 +51,31 @@ export default {
                 return response.json();
             })
             .then(myJson => {
-                console.log(JSON.stringify(myJson));
-                this.roster = myJson;
+                console.log(myJson);
+                this.roster = JSON.parse(myJson);
+                this.players = getRandom(
+                    this.roster.map(p => {
+                        return {
+                            name: `${p.LAST_NAME}, ${p.FIRST_NAME}`,
+                            pos: 'CF'
+                        };
+                    }),
+                    9
+                );
             });
+
+        // fetch(
+        //     `https://fnlylv1jjh.execute-api.us-east-1.amazonaws.com/dev/getRanks?hot=${
+        //         this.hot
+        //     }&platoon=${this.platoon}&pitch_hand=${this.pitch_hand}`
+        // )
+        //     .then(response => {
+        //         return response.json();
+        //     })
+        //     .then(myJson => {
+        //         console.log(JSON.stringify(myJson));
+        //         this.lineup = myJson;
+        //     });
     },
     data() {
         return {
@@ -83,6 +113,19 @@ export default {
         };
     }
 };
+
+function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len) throw new RangeError('getRandom: more elements taken than available');
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
 </script>
 
 <style>
