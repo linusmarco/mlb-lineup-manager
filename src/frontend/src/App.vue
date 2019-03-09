@@ -3,7 +3,7 @@
         <Header />
         <main>
             <ControlPanel />
-            <Lineup />
+            <Lineup :players="testPlayers" />
             <Roster />
         </main>
         <Footer />
@@ -25,6 +25,21 @@ export default {
         Roster,
         Header,
         Footer
+    },
+    data() {
+        return {
+            testPlayers: [
+                { name: 'Player 1', pos: 'P' },
+                { name: 'Player 2', pos: 'C' },
+                { name: 'Player 3', pos: '1B' },
+                { name: 'Player 4', pos: '2B' },
+                { name: 'Player 5', pos: '3B' },
+                { name: 'Player 6', pos: 'SS' },
+                { name: 'Player 7', pos: 'LF' },
+                { name: 'Player 8', pos: 'CF' },
+                { name: 'Player 9', pos: 'RF' }
+            ]
+        };
     }
 };
 </script>
