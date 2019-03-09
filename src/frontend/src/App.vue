@@ -1,9 +1,11 @@
 <template>
     <div id="app">
         <Header />
-        <ControlPanel />
-        <Lineup />
-        <Roster />
+        <main>
+            <ControlPanel />
+            <Lineup />
+            <Roster />
+        </main>
         <Footer />
     </div>
 </template>
@@ -50,5 +52,15 @@ body {
     min-height: calc(100vh - 5.8rem - 3rem);
     position: relative;
     padding: 5.8rem 0 3rem 0;
+}
+
+#app > :nth-child(2) {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1,
+h2 {
+    font-weight: 600;
 }
 </style>
